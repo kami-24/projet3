@@ -469,3 +469,9 @@ width: 150px;
 	cursor: pointer; 
 
 }
+
+.btn_modifier{
+text-decoration: none;
+color: black;
+margin-left: 30px;
+}

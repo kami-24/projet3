@@ -1,7 +1,6 @@
 async function afficherPhotos() {
     const response = await fetch("http://localhost:5678/api/works");
     const data = await response.json();
-    console.log(data)
     const father = document.querySelector('.gallery');
 // Faire une suppression de tout contenu
 //
@@ -33,15 +32,42 @@ father.innerHTML=""
 //afficherPhotos();
 
 //Le bouton modifier doit etre visible si le token existe
+// Le bouton logout doit etre present si le token existe sinon login 
 document.addEventListener('DOMContentLoaded', function() {
     const token = localStorage.getItem('token'); 
     var bouton_modifier = document.getElementById('btn_modifier'); 
     if (token) {
       bouton_modifier.style.display = 'block'; 
+      document.getElementById('login_logout').textContent = 'logout';
     } else {
       bouton_modifier.style.display = 'none';
+      document.getElementById('login_logout').textContent = 'login';
     }
   });
+
+//Quand on clique sur le bouton logout on est rediriger vers la page home_page.html
+document.addEventListener('DOMContentLoaded', function() {
+    const token = localStorage.getItem('token'); 
+    var bouton_modifier = document.getElementById('login_logout'); 
+    if (token) {
+        console.log("test")
+        bouton_modifier.addEventListener('click', ()=> {
+              // Supprime le token du localStorage
+              console.log("test2")
+        localStorage.removeItem('token');
+            window.location.href = 'home_page.html';
+        });
+    } 
+  });
+
+
+
+/*document.getElementById('login_logout').addEventListener('click', function() {
+    const token = localStorage.getItem('token'); 
+    if(token){
+        window.location.href = 'home_page.html';
+    }
+});*/
 
 document.addEventListener('DOMContentLoaded', async function() {
     const response = await fetch("http://localhost:5678/api/works");
@@ -175,8 +201,11 @@ container.appendChild(arriere_plan_icone_corbeille)
 document.addEventListener('DOMContentLoaded', function () {
    /* Use JavaScript to turn on and off the overlay effect:
     https://www.w3schools.com/howto/howto_css_overlay.asp*/
- const boutonEdition = document.querySelector('.fa-regular.fa-pen-to-square.btn_modifier');
-//   const boutonEdition = document.querySelector('.fa-regular fa-pen-to-square');
+ //const boutonEdition = document.querySelector('.fa-regular.fa-pen-to-square.btn_modifier');
+ const boutonEdition = document.querySelector('.btn_modifier');
+
+
+ //   const boutonEdition = document.querySelector('.fa-regular fa-pen-to-square');
     const modale = document.getElementById('modale');
     const boutonFermer = document.querySelector('.bouton_fermer');
 
@@ -312,5 +341,76 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
+//Le menu déroulant de la modale 2 
+document.addEventListener('DOMContentLoaded', async function() {
+    const response = await fetch("http://localhost:5678/api/works");
+    const data = await response.json();
+    const token = localStorage.getItem('token');
+    if(token){
+        return;
+    }
+    else{
+    const tableau_categorie = data.map(element => element.category.name);
+    const monSet = new Set(["Tous",...tableau_categorie]); // Création d'un ensemble Set à partir du tableau
+    console.log("MON Set")
+    console.log(monSet)
+    //const father = document.querySelector('#portfolio');
+   const father = document.querySelector('#containeur_bouton');
+    // Creer un container div pour les boutons
+    const buttonContainer = document.createElement('div');
+    buttonContainer.classList.add('button-container');
+  
+
+    // Parcourir l'ensemble Set et créer un bouton pour chaque élément unique
+    monSet.forEach(categorie => {
+        const button = document.createElement('button');
+        button.textContent = categorie;
+        // Ajouter un écouteur d'événements pour chaque bouton qui va permettre de filtrer les éléments
+        
+        button.addEventListener('click', ()=> {
+
+            filtrer_images(categorie,data);
+        
+        });
+        father.appendChild(button);
+    });}
+});
 
 
+//Le menu deroulant des categorie dans la modale 2 est génére dynamiquement
+
+document.addEventListener('DOMContentLoaded', async function() {
+    const response = await fetch("http://localhost:5678/api/categories");
+    const data = await response.json();
+    const token = localStorage.getItem('token');
+    console.log("ici")
+    console.log(data)
+    if(token){
+     //   const tableau_categorie = data.map(element => element.category.name);
+   // const monSet = new Set(["Tous",...tableau_categorie]); 
+  //  console.log("MON Set")
+   // console.log(monSet)
+   const father = document.querySelector('#ajouter_categorie');
+ //Creer la premiere option de la liste deroulante
+    const premiere_option_liste = document.createElement('option');
+    premiere_option_liste.textContent="Choisir une categorie";
+    father.appendChild(premiere_option_liste);
+  
+
+    // Parcourir l'ensemble Set et créer une option pour chaque élément unique
+    data.forEach(element => {
+        console.log(element)
+        const option = document.createElement('option');
+        option.textContent = element.name;
+        option.value=element.id
+        // Ajouter un écouteur d'événements pour chaque bouton qui va permettre de filtrer les éléments
+        father.appendChild(option);
+  
+    }
+);
+
+    }
+    else{
+        return;
+    }
+});

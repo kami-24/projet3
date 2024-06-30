@@ -175,7 +175,7 @@ container.appendChild(arriere_plan_icone_corbeille)
 document.addEventListener('DOMContentLoaded', function () {
    /* Use JavaScript to turn on and off the overlay effect:
     https://www.w3schools.com/howto/howto_css_overlay.asp*/
- const boutonEdition = document.querySelector('.fa-regular.fa-pen-to-square');
+ const boutonEdition = document.querySelector('.fa-regular.fa-pen-to-square.btn_modifier');
 //   const boutonEdition = document.querySelector('.fa-regular fa-pen-to-square');
     const modale = document.getElementById('modale');
     const boutonFermer = document.querySelector('.bouton_fermer');

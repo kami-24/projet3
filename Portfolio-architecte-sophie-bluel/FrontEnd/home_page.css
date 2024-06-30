@@ -1,0 +1,79 @@
+/** {
+  border: 1px solid;
+}*/
+
+body{
+
+    background-color:#f7f3eb;
+}
+.liste_haut_page{
+display: flex;
+
+}
+
+.containeur_haut_page{
+display: flex;
+justify-content: space-between;
+}
+
+.title_log_in{
+    margin-top: 150px; 
+    color:  rgb(31, 78, 31);
+    text-align: center;
+}
+
+.main_page{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.formulaire{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+   
+
+}
+.entree {
+    border: 1px solid #DDD;
+    margin-bottom: 20px;
+    padding: 10px;
+   
+  
+}
+.containeur_principal{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+   gap: 20px;
+}
+
+.mot_passe_oublie{
+
+    color: black;
+}
+
+.bouton{
+   /* width: 100%;*/
+    padding: 10px;
+    background-color: rgb(31, 78, 31);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-size: 16px;
+
+
+  
+    cursor: pointer;
+
+    
+}
+
+.containeur_mes_projets{
+    display: flex;
+    align-items: center;
+
+}

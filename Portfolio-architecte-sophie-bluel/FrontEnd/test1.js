@@ -3,7 +3,6 @@ async function afficherPhotos() {
     const data = await response.json();
     const father = document.querySelector('.gallery');
 // Faire une suppression de tout contenu
-//
 father.innerHTML=""
     data.forEach(element => {  
    //CREER UNE fonction avec les filtres pour ne pas repeter aussi ce bout de code dan les filtres 
@@ -29,8 +28,6 @@ father.innerHTML=""
     
 }
 
-//afficherPhotos();
-
 //Le bouton modifier doit etre visible si le token existe
 // Le bouton logout doit etre present si le token existe sinon login 
 document.addEventListener('DOMContentLoaded', function() {
@@ -50,24 +47,15 @@ document.addEventListener('DOMContentLoaded', function() {
     const token = localStorage.getItem('token'); 
     var bouton_modifier = document.getElementById('login_logout'); 
     if (token) {
-        console.log("test")
+      
         bouton_modifier.addEventListener('click', ()=> {
               // Supprime le token du localStorage
-              console.log("test2")
+          
         localStorage.removeItem('token');
             window.location.href = 'home_page.html';
         });
     } 
   });
-
-
-
-/*document.getElementById('login_logout').addEventListener('click', function() {
-    const token = localStorage.getItem('token'); 
-    if(token){
-        window.location.href = 'home_page.html';
-    }
-});*/
 
 document.addEventListener('DOMContentLoaded', async function() {
     const response = await fetch("http://localhost:5678/api/works");
@@ -79,9 +67,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     else{
     const tableau_categorie = data.map(element => element.category.name);
     const monSet = new Set(["Tous",...tableau_categorie]); // Création d'un ensemble Set à partir du tableau
-    console.log("MON Set")
-    console.log(monSet)
-    //const father = document.querySelector('#portfolio');
+
    const father = document.querySelector('#containeur_bouton');
     // Creer un container div pour les boutons
     const buttonContainer = document.createElement('div');
@@ -140,12 +126,7 @@ async function afficherPhotosModale() {
    photoGalerie.innerHTML = '';  // supprimer photos existantes 
 
     data.forEach(element => {
-   
-
-       /* const img = document.createElement('img')
-        photoGalerie.appendChild(img);
-        img.src = element.imageUrl;*/
-         
+          
   // Créer un conteneur pour l'image et l'icône
   const container = document.createElement('div');
   container.classList.add('photo_container'); // Ajouter une classe pour le conteneur si nécessaire
@@ -169,10 +150,9 @@ container.appendChild(arriere_plan_icone_corbeille)
  icone.addEventListener('click', async () => {
     // Récupérer le token à partir du localStorage
     const token = localStorage.getItem('token');
-    console.log('test')
-    console.log(token)
+  
     if (token) {
-        console.log(element.id)
+
         const deleteResponse = await fetch(`http://localhost:5678/api/works/${element.id}`, {
      
             method: 'DELETE',
@@ -189,30 +169,18 @@ container.appendChild(arriere_plan_icone_corbeille)
     } 
 });
 
-
-
   photoGalerie.appendChild(container);
-
-
 
     });
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-   /* Use JavaScript to turn on and off the overlay effect:
-    https://www.w3schools.com/howto/howto_css_overlay.asp*/
- //const boutonEdition = document.querySelector('.fa-regular.fa-pen-to-square.btn_modifier');
  const boutonEdition = document.querySelector('.btn_modifier');
 
-
- //   const boutonEdition = document.querySelector('.fa-regular fa-pen-to-square');
     const modale = document.getElementById('modale');
     const boutonFermer = document.querySelector('.bouton_fermer');
 
     boutonEdition.addEventListener('click', function () {
-        /*
-        w3 school 
-        function on() {document.getElementById("overlay").style.display = "block";}*/ 
         modale.style.display = 'block';
         overlay.style.display = 'block';
         afficherPhotosModale();
@@ -229,13 +197,6 @@ document.addEventListener('DOMContentLoaded', function () {
     afficherPhotos();
 });
 
-
-
-
-
-
-//new
-
 document.addEventListener('DOMContentLoaded', function () {
     const boutonAjouter = document.getElementById('bouton_ajouter');
     const modale = document.getElementById('modale2');
@@ -246,11 +207,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const modale1=document.getElementById('modale');
 
     boutonAjouter.addEventListener('click', function (event) {
-     //   event.preventDefault(); // Empêche toute action par défaut du bouton, comme soumettre un formulaire
-        console.log('CLique sur la modale 2')
        modale1.style.display = 'none';
         modale.style.display = 'block';
-      //  overlay.style.display = 'block';
      
     });
 
@@ -260,15 +218,10 @@ document.addEventListener('DOMContentLoaded', function () {
         overlay.style.display = 'none';
     });
 
-  /*  overlay.addEventListener('click', function () {
-        modale.style.display = 'none';
-        overlay.style.display = 'none';
-    });
-*/
 
 document.getElementById('ajouter_photo').addEventListener('click', function(event) {
     event.preventDefault() // pour ne pas recharger la page
-    console.log("test")
+
     document.getElementById('telecharger_image_input').click();
 });
 
@@ -285,18 +238,13 @@ document.getElementById('telecharger_image_input').addEventListener('change', fu
     reader.readAsDataURL(event.target.files[0]);
 });
 
-//new
-
    valider_btn.addEventListener('click', async (event)=> {
    
-// Ajouter 
-//new
-
         event.preventDefault() // pour ne pas recharger la page
-        console.log('CLique sur le bouton valider')
+
 
         const photo = document.getElementById('telecharger_image_input').files[0];
-        console.log(photo)
+   
         const titre = document.getElementById('ajouter_titre').value;
         const categorie = document.getElementById('ajouter_categorie').value;
 
@@ -329,7 +277,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const boutonRedirection=document.getElementById('redirection_vers_modale1')
     boutonRedirection.addEventListener('click', function (event) {
-        console.log('Test redirection vers modale 1-2')
+
         const modale2 = document.getElementById('modale2');
     const modale1=document.getElementById('modale');
         modale2.style.display = 'none';
@@ -352,9 +300,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     else{
     const tableau_categorie = data.map(element => element.category.name);
     const monSet = new Set(["Tous",...tableau_categorie]); // Création d'un ensemble Set à partir du tableau
-    console.log("MON Set")
-    console.log(monSet)
-    //const father = document.querySelector('#portfolio');
+
    const father = document.querySelector('#containeur_bouton');
     // Creer un container div pour les boutons
     const buttonContainer = document.createElement('div');
@@ -383,13 +329,10 @@ document.addEventListener('DOMContentLoaded', async function() {
     const response = await fetch("http://localhost:5678/api/categories");
     const data = await response.json();
     const token = localStorage.getItem('token');
-    console.log("ici")
-    console.log(data)
+
     if(token){
-     //   const tableau_categorie = data.map(element => element.category.name);
-   // const monSet = new Set(["Tous",...tableau_categorie]); 
-  //  console.log("MON Set")
-   // console.log(monSet)
+
+
    const father = document.querySelector('#ajouter_categorie');
  //Creer la premiere option de la liste deroulante
     const premiere_option_liste = document.createElement('option');
@@ -399,7 +342,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 
     // Parcourir l'ensemble Set et créer une option pour chaque élément unique
     data.forEach(element => {
-        console.log(element)
+  
         const option = document.createElement('option');
         option.textContent = element.name;
         option.value=element.id

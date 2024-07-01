@@ -1,162 +1,146 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
-<head>
-	<meta charset="UTF-8">
-	<title>Sophie Bluel - Architecte d'intérieur</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
-	<link
+  <head>
+    <meta charset="UTF-8" />
+    <title>Sophie Bluel - Architecte d'intérieur</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-    >
-	<meta name="description" content="">
-	<link rel="stylesheet" href="./assets/style.css">
-	<script src="test1.js"></script>
-</head>
-<body>
-	 
-	<div class="mode_edition" style="display:none;">
-		<i class="fa-solid fa-pen-to-square"></i>Mode édition
+    />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="./assets/style.css" />
+    <script src="test1.js"></script>
+  </head>
+  <body>
+    <div class="mode_edition" style="display: none">
+      <i class="fa-solid fa-pen-to-square"></i>Mode édition
     </div>
 
-<header>
-	<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
-	<nav>
-		<ul>
-			<li>projets</li>
-			<li>contact</li>
-			<a href=""><li id="login_logout">login</li></a>	
-			<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
-		</ul>
-	</nav>
-</header>
-<main>
-	<section id="introduction">
-		<figure>
-			<img src="./assets/images/sophie-bluel.png" alt="">
-		</figure>
-		<article>
-			<h2>Designer d'espace</h2>
-			<p>Je raconte votre histoire, je valorise vos idées. Je vous accompagne de la conception à la livraison finale du chantier.</p>
-			<p>Chaque projet sera étudié en commun, de façon à mettre en valeur les volumes, les matières et les couleurs dans le respect de l’esprit des lieux et le choix adapté des matériaux. Le suivi du chantier sera assuré dans le souci du détail, le respect du planning et du budget.</p>
-			<p>En cas de besoin, une équipe pluridisciplinaire peut-être constituée : architecte DPLG, décorateur(trice)</p>
-		</article>
-	</section>
-	<section id="portfolio">
-	
-		<div class="containeur_mes_projets">
-			<h2>Mes Projets</h2>
-			<div id="btn_modifier" >
-				<!--	<button class="fa-regular fa-pen-to-square btn_modifier"></button> ModifieR--> 
-				<a href="#" class="btn_modifier">
-					<i class="fa-solid fa-pen-to-square"></i> modifier
-				</a>
-					
-		</div>
-		</div>
-		
-		
-			
-		<div id="containeur_bouton">
-		</div>
-		
-		<div class="gallery">
-		
-		</div>
-	
-	</section>
-	<section id="contact">
-		<h2>Contact</h2>
-		<p>Vous avez un projet ? Discutons-en !</p>
-		<form action="#" method="post">
-			<label for="name">Nom</label>
-			<input type="text" name="name" id="name">
-			<label for="email">Email</label>
-			<input type="email" name="email" id="email">
-			<label for="message">Message</label>
-			<textarea name="message" id="message" cols="30" rows="10"></textarea>
-			<input type="submit" value="Envoyer">
-		</form>
-	</section>
-</main>
+    <header>
+      <h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
+      <nav>
+        <ul>
+          <li>projets</li>
+          <li>contact</li>
+          <a href=""><li id="login_logout">login</li></a>
+          <li><img src="./assets/icons/instagram.png" alt="Instagram" /></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <section id="introduction">
+        <figure>
+          <img src="./assets/images/sophie-bluel.png" alt="" />
+        </figure>
+        <article>
+          <h2>Designer d'espace</h2>
+          <p>
+            Je raconte votre histoire, je valorise vos idées. Je vous accompagne
+            de la conception à la livraison finale du chantier.
+          </p>
+          <p>
+            Chaque projet sera étudié en commun, de façon à mettre en valeur les
+            volumes, les matières et les couleurs dans le respect de l’esprit
+            des lieux et le choix adapté des matériaux. Le suivi du chantier
+            sera assuré dans le souci du détail, le respect du planning et du
+            budget.
+          </p>
+          <p>
+            En cas de besoin, une équipe pluridisciplinaire peut-être constituée
+            : architecte DPLG, décorateur(trice)
+          </p>
+        </article>
+      </section>
+      <section id="portfolio">
+        <div class="containeur_mes_projets">
+          <h2>Mes Projets</h2>
+          <div id="btn_modifier">
+            <a href="#" class="btn_modifier">
+              <i class="fa-solid fa-pen-to-square"></i> modifier
+            </a>
+          </div>
+        </div>
 
-<footer>
-	<nav>
-		<ul>
-			<li>Mentions Légales</li>
-		</ul>
-	</nav>
-</footer>
+        <div id="containeur_bouton"></div>
 
-<!-- Modale  -->
-<div class="overlay" id="overlay"></div>
-<div id="modale" class="modale">
-	
-	<div class="conteneur_modale">
-	<!--	https://www.w3schools.com/charsets/ref_html_entities_4.asp-->
-		<span class="bouton_fermer">&times;</span>
-		<p class="style_txt_galerie_photo">Galerie photo</p>
-		<div class="photo_galerie"></div>
-		<div class="ligne_horizontale"></div>
-		<button id="bouton_ajouter">Ajouter une photo</button>
-	</div><!--	new-->
-</div><!--	new-->
-<!--	new-->
+        <div class="gallery"></div>
+      </section>
+      <section id="contact">
+        <h2>Contact</h2>
+        <p>Vous avez un projet ? Discutons-en !</p>
+        <form action="#" method="post">
+          <label for="name">Nom</label>
+          <input type="text" name="name" id="name" />
+          <label for="email">Email</label>
+          <input type="email" name="email" id="email" />
+          <label for="message">Message</label>
+          <textarea name="message" id="message" cols="30" rows="10"></textarea>
+          <input type="submit" value="Envoyer" />
+        </form>
+      </section>
+    </main>
 
-<div class="overlay2" id="overlay2"></div>
-<div id="modale2" class="modale2">
-	<a href="#" id="redirection_vers_modale1" class="fa fa-arrow-left"></a>
-    <div class="conteneur_modale2">
+    <footer>
+      <nav>
+        <ul>
+          <li>Mentions Légales</li>
+        </ul>
+      </nav>
+    </footer>
+
+    <!-- Modale  -->
+    <div class="overlay" id="overlay"></div>
+    <div id="modale" class="modale">
+      <div class="conteneur_modale">
+        <span class="bouton_fermer">&times;</span>
+        <p class="style_txt_galerie_photo">Galerie photo</p>
+        <div class="photo_galerie"></div>
+        <div class="ligne_horizontale"></div>
+        <button id="bouton_ajouter">Ajouter une photo</button>
+      </div>
+    </div>
+
+    <div class="overlay2" id="overlay2"></div>
+    <div id="modale2" class="modale2">
+      <a href="#" id="redirection_vers_modale1" class="fa fa-arrow-left"></a>
+      <div class="conteneur_modale2">
         <span class="bouton_fermer2">&times;</span>
-        	<!-- name="fileInput" : C'est le nom du champ de fichier qui sera envoyé avec le formulaire. C'est aussi le nom par lequel vous pourrez récupérer ce fichier côté serveur.-->
-		<p class="ajout_photo">Ajout photo</p>
-			<form id="telecharger_image"  enctype="multipart/form-data">
-		<input type="file" id="telecharger_image_input" name="nom_du_fichier_qui_sera_envoyeravec_le_formulaire" accept="image/*">
-		<img id = "image_par_defaut" src="assets/icons/ajouter_photo.png" alt="">
-		<button id="ajouter_photo"> + Ajouter photo </button>
-		<!-- 	<button id='ajouter_photo'type="submit">+ Ajouter photo</button>-->
-		<!--	ON AJOUTE une balise img pour prévisualiser l'image dans la-->
-	<img id="image_previsualiser" alt="">
-	<!--	<div class="telecharger-conteneur">-->
-			
-			<p>jpeg, png : 4mo max</p>
-		</form>
-	</div>
-	<form>
-		<label class="titre" >Titre</label>
-		<input  id="ajouter_titre" type="text" >
-		
-		<label class="categorie" >Catégorie</label>
-		<select id="ajouter_categorie">
-		<!-- 		<option id="categorie_liste" value="" >Choisissez une catégorie</option>
-			
-			<option value="1">Objets</option>
-				<option value="2">Appartements</option>
-				<option value="3">Hotels & restaurants</option>
-		-->
-			</select>
-		
-		
-	</form>
-	<button class='valider_btn' type="submit" >Valider</button>
 
+        <p class="ajout_photo">Ajout photo</p>
+        <form id="telecharger_image" enctype="multipart/form-data">
+          <input
+            type="file"
+            id="telecharger_image_input"
+            name="nom_du_fichier_qui_sera_envoyeravec_le_formulaire"
+            accept="image/*"
+          />
+          <img
+            id="image_par_defaut"
+            src="assets/icons/ajouter_photo.png"
+            alt=""
+          />
+          <button id="ajouter_photo">+ Ajouter photo</button>
 
+          <img id="image_previsualiser" alt="" />
 
+          <p>jpeg, png : 4mo max</p>
+        </form>
+      </div>
+      <form>
+        <label class="titre">Titre</label>
+        <input id="ajouter_titre" type="text" />
 
-</div>
-
-
-
-	</div>
-
-</div>
-
-
-
-
-
-
-</body>
+        <label class="categorie">Catégorie</label>
+        <select id="ajouter_categorie"></select>
+      </form>
+      <button class="valider_btn" type="submit">Valider</button>
+    </div>
+  </body>
 </html>

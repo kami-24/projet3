@@ -80,7 +80,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     });
   }
 });
- 
+
 // Fonction qui va filtrer les images en fonction de la catégorie
 function filtrerTravauxGallerie(categorie, data) {
   //si la categorie du bouton est égale a Objets alors on affiche les images qui ont la categorie Objets
@@ -223,88 +223,67 @@ document.addEventListener("DOMContentLoaded", function () {
       reader.readAsDataURL(event.target.files[0]);
     });
 
-const ajouterTitre = document.getElementById("ajouter_titre");
-ajouterTitre.addEventListener("input", (event) => {
-  if (
-    
-    document.getElementById("image_previsualiser").src !== "" &&
-    document.getElementById("ajouter_titre").value !== "" &&
-    document.getElementById("ajouter_categorie").value !== ""
-  ) {
-    console.log("mon test test")
-    document.getElementById("valider_btn").style.backgroundColor = "green";
-  }
+  const ajouterTitre = document.getElementById("ajouter_titre");
+  ajouterTitre.addEventListener("input", (event) => {
+    if (
+      document.getElementById("image_previsualiser").src !== "" &&
+      document.getElementById("ajouter_titre").value !== "" &&
+      document.getElementById("ajouter_categorie").value !== ""
+    ) {
+      document.getElementById("valider_btn").style.backgroundColor = "green";
+    }
+  });
 
-});
-
-/*
-    document.addEventListener("DOMContentLoaded", function () {
-      //Si image_previsualiser ou ajouterTitre ou ajouter_categorie ne sont pas vides alros le bouton validerBtn doit avoir comme background green
-      if (
-        document.getElementById("image_previsualiser").src !== "" &&
-        document.getElementById("ajouter_titre").value !== "" &&
-        document.getElementById("ajouter_categorie").value !== ""
-      ) {
-        document.getElementById("valider_btn").style.backgroundColor = "green";
-      }})
-*/
-validerBtn.addEventListener("click", async (event) => {
+  validerBtn.addEventListener("click", async (event) => {
     //Si image_previsualiser ou ajouterTitre ou ajouter_categorie est vidse alors le bouton valider_btn doit etre desactivé
-   if (
+    if (
       document.getElementById("image_previsualiser").src === "" ||
       document.getElementById("ajouter_titre").value === "" ||
       document.getElementById("ajouter_categorie").value === ""
     ) {
-      
-     
-     // document.getElementById("valider_btn").disabled = true;
       return console.log("Veuillez remplir tous les champs");
+    } else {
+      event.preventDefault(); // pour ne pas recharger la page
+
+      const photo = document.getElementById("telecharger_image_input").files[0];
+
+      const titre = document.getElementById("ajouter_titre").value;
+      const categorie = document.getElementById("ajouter_categorie").value;
+
+      const formData = new FormData();
+      formData.append("image", photo);
+      formData.append("title", titre);
+      formData.append("category", categorie);
+      // Récupérer le token à partir du localStorage
+      const token = localStorage.getItem("token");
+      const response = await fetch(`http://localhost:5678/api/works`, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        body: formData,
+      });
+      //on reinitialise les 3 parametres
+
+      document.getElementById("image_previsualiser").src = "";
+      document.getElementById("image_par_defaut").style.display = "block";
+      document.getElementById("ajouter_photo").style.display = "block";
+      document.getElementById("ajouter_titre").value = "";
+      document.getElementById("ajouter_categorie").value = "";
+      //On fait disparaitre la modale 2
+      modale.style.display = "none";
+      afficherTravauxGallerie();
+      //Actualiser la modale 1
+      afficherTravauxModale();
+      const modale2 = document.getElementById("modale2");
+      const modale1 = document.getElementById("modale");
+      modale2.style.display = "none";
+      modale1.style.display = "block";
     }
-    else{
-
-    event.preventDefault(); // pour ne pas recharger la page
-  
-    const photo = document.getElementById("telecharger_image_input").files[0];
-
-    const titre = document.getElementById("ajouter_titre").value;
-    const categorie = document.getElementById("ajouter_categorie").value;
-
-    const formData = new FormData();
-    formData.append("image", photo);
-    formData.append("title", titre);
-    formData.append("category", categorie);
-    // Récupérer le token à partir du localStorage
-    // Récupérer le token à partir du localStorage
-    const token = localStorage.getItem("token");
-    const response = await fetch(`http://localhost:5678/api/works`, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-      body: formData,
-    });
-    //on reinitialise les 3 parametres
-
-    document.getElementById("image_previsualiser").src = "";
-    document.getElementById("image_par_defaut").style.display = "block";
-    document.getElementById("ajouter_photo").style.display = "block";
-    document.getElementById("ajouter_titre").value = "";
-    document.getElementById("ajouter_categorie").value = "";
-    //On fait disparaitre la modale 2
-    modale.style.display = "none";
-    afficherTravauxGallerie();
-    //Actualiser la modale 1
-    afficherTravauxModale();
-    const modale2 = document.getElementById("modale2");
-    const modale1 = document.getElementById("modale");
-    modale2.style.display = "none";
-    modale1.style.display = "block";}
-  }
-);
+  });
 });
 
 //Redirection vers la modale 1
-
 document.addEventListener("DOMContentLoaded", function () {
   const boutonRedirection = document.getElementById("redirection_vers_modale1");
   boutonRedirection.addEventListener("click", function (event) {
@@ -315,10 +294,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-
-
 //Le menu deroulant des categorie dans la modale 2 est génére dynamiquement
-
 document.addEventListener("DOMContentLoaded", async function () {
   const response = await fetch("http://localhost:5678/api/categories");
   const data = await response.json();

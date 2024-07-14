@@ -1,4 +1,4 @@
-async function afficherPhotos() {
+async function afficherTravauxGallerie() {
   const response = await fetch("http://localhost:5678/api/works");
   const data = await response.json();
   const father = document.querySelector(".gallery");
@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       // Ajouter un écouteur d'événements pour chaque bouton qui va permettre de filtrer les éléments
 
       button.addEventListener("click", () => {
-        filtrer_images(categorie, data);
+        filtrerTravauxGallerie(categorie, data);
       });
       father.appendChild(button);
     });
@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 });
  
 // Fonction qui va filtrer les images en fonction de la catégorie
-function filtrer_images(categorie, data) {
+function filtrerTravauxGallerie(categorie, data) {
   //si la categorie du bouton est égale a Objets alors on affiche les images qui ont la categorie Objets
   const father = document.querySelector(".gallery");
   //vider
@@ -102,7 +102,7 @@ function filtrer_images(categorie, data) {
   });
 }
 
-async function afficherPhotosModale() {
+async function afficherTravauxModale() {
   const response = await fetch("http://localhost:5678/api/works");
   const data = await response.json();
 
@@ -165,17 +165,17 @@ document.addEventListener("DOMContentLoaded", function () {
   boutonEdition.addEventListener("click", function () {
     modale.style.display = "block";
     overlay.style.display = "block";
-    afficherPhotosModale();
+    afficherTravauxModale();
   });
 
   boutonFermer.addEventListener("click", function () {
     modale.style.display = "none";
     overlay.style.display = "none";
-    //On rappel la fonction afficherPhotos() car elle fait la maj au niveau Backend afin de supprimer les photos sur la page d'accueil
-    afficherPhotos();
+    //On rappel la fonction afficherTravauxGallerie() car elle fait la maj au niveau Backend afin de supprimer les photos sur la page d'accueil
+    afficherTravauxGallerie();
   });
 
-  afficherPhotos();
+  afficherTravauxGallerie();
 });
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -293,9 +293,9 @@ ajouter_titre.addEventListener("input", (event) => {
     document.getElementById("ajouter_categorie").value = "";
     //On fait disparaitre la modale 2
     modale.style.display = "none";
-    afficherPhotos();
+    afficherTravauxGallerie();
     //Actualiser la modale 1
-    afficherPhotosModale();
+    afficherTravauxModale();
     const modale2 = document.getElementById("modale2");
     const modale1 = document.getElementById("modale");
     modale2.style.display = "none";

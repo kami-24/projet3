@@ -223,16 +223,29 @@ document.addEventListener("DOMContentLoaded", function () {
       reader.readAsDataURL(event.target.files[0]);
     });
 
-  const ajouterTitre = document.getElementById("ajouter_titre");
-  ajouterTitre.addEventListener("input", (event) => {
+  function modifierCouleurBoutonValider() {
+    const validerBtn = document.querySelector(".valider_btn");
     if (
       document.getElementById("image_previsualiser").src !== "" &&
       document.getElementById("ajouter_titre").value !== "" &&
       document.getElementById("ajouter_categorie").value !== ""
     ) {
-      document.getElementById("valider_btn").style.backgroundColor = "green";
+      validerBtn.style.backgroundColor = "#2f7d6d"; //Modifier la couleur du bouton valider
+    } else {
+      validerBtn.style.backgroundColor = "";
     }
-  });
+  }
+
+  //Ajouter un eventlistener pour chaque champ de la modale 2
+  document
+    .getElementById("image_previsualiser")
+    .addEventListener("change", modifierCouleurBoutonValider);
+  document
+    .getElementById("ajouter_titre")
+    .addEventListener("input", modifierCouleurBoutonValider);
+  document
+    .getElementById("ajouter_categorie")
+    .addEventListener("input", modifierCouleurBoutonValider);
 
   validerBtn.addEventListener("click", async (event) => {
     //Si image_previsualiser ou ajouterTitre ou ajouter_categorie est vidse alors le bouton valider_btn doit etre desactivé
@@ -243,6 +256,8 @@ document.addEventListener("DOMContentLoaded", function () {
     ) {
       return console.log("Veuillez remplir tous les champs");
     } else {
+      //On reinitialise la couleur du bouton valider
+      validerBtn.style.backgroundColor = "";
       event.preventDefault(); // pour ne pas recharger la page
 
       const photo = document.getElementById("telecharger_image_input").files[0];

@@ -5,7 +5,6 @@ async function afficherTravauxGallerie() {
   // Faire une suppression de tout contenu
   father.innerHTML = "";
   data.forEach((element) => {
-    //CREER UNE fonction avec les filtres pour ne pas repeter aussi ce bout de code dan les filtres
     const figure = document.createElement("figure");
     father.appendChild(figure);
 
@@ -29,12 +28,12 @@ async function afficherTravauxGallerie() {
 // Le bouton logout doit etre present si le token existe sinon login
 document.addEventListener("DOMContentLoaded", function () {
   const token = localStorage.getItem("token");
-  var bouton_modifier = document.getElementById("btn_modifier");
+  var boutonModifier = document.getElementById("btn_modifier");
   if (token) {
-    bouton_modifier.style.display = "block";
+    boutonModifier.style.display = "block";
     document.getElementById("login_logout").textContent = "logout";
   } else {
-    bouton_modifier.style.display = "none";
+    boutonModifier.style.display = "none";
     document.getElementById("login_logout").textContent = "login";
   }
 });
@@ -42,9 +41,9 @@ document.addEventListener("DOMContentLoaded", function () {
 //Quand on clique sur le bouton logout on est rediriger vers la page home_page.html
 document.addEventListener("DOMContentLoaded", function () {
   const token = localStorage.getItem("token");
-  var bouton_modifier = document.getElementById("login_logout");
+  var boutonModifier = document.getElementById("login_logout");
   if (token) {
-    bouton_modifier.addEventListener("click", () => {
+    boutonModifier.addEventListener("click", () => {
       // Supprime le token du localStorage
 
       localStorage.removeItem("token");
@@ -60,8 +59,8 @@ document.addEventListener("DOMContentLoaded", async function () {
   if (token) {
     return;
   } else {
-    const tableau_categorie = data.map((element) => element.category.name);
-    const monSet = new Set(["Tous", ...tableau_categorie]); // Création d'un ensemble Set à partir du tableau
+    const tableauCategorie = data.map((element) => element.category.name);
+    const monSet = new Set(["Tous", ...tableauCategorie]); // Création d'un ensemble Set à partir du tableau
 
     const father = document.querySelector("#containeur_bouton");
     // Creer un container div pour les boutons
@@ -119,14 +118,14 @@ async function afficherTravauxModale() {
     container.appendChild(img);
 
     //Ajouter un arrire plan noir a l'icone de corbeille
-    const arriere_plan_icone_corbeille = document.createElement("div");
-    arriere_plan_icone_corbeille.classList.add("arriere_plan_icone_corbeille");
-    container.appendChild(arriere_plan_icone_corbeille);
+    const arrierePlanIconeCorbeille = document.createElement("div");
+    arrierePlanIconeCorbeille.classList.add("arriere_plan_icone_corbeille");
+    container.appendChild(arrierePlanIconeCorbeille);
 
     // Ajouter l'icone corbeille
     const icone = document.createElement("i");
     icone.classList.add("fa-regular", "fa-trash-can", "corbeille_icone");
-    arriere_plan_icone_corbeille.appendChild(icone);
+    arrierePlanIconeCorbeille.appendChild(icone);
     //container.appendChild(icone);
 
     // Ajouter un gestionnaire d'événements pour supprimer l'image
@@ -184,7 +183,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const overlay = document.getElementById("overlay");
   const boutonFermer = document.querySelector(".bouton_fermer2");
   const photoGalerie = document.querySelector(".photo_galerie");
-  const valider_btn = document.querySelector(".valider_btn");
+  const validerBtn = document.querySelector(".valider_btn");
   const modale1 = document.getElementById("modale");
 
   boutonAjouter.addEventListener("click", function (event) {
@@ -214,18 +213,18 @@ document.addEventListener("DOMContentLoaded", function () {
       var reader = new FileReader();
       reader.onload = function () {
         var output = document.getElementById("image_previsualiser");
-        var img_defaut = document.getElementById("image_par_defaut");
-        var btn_ajouter_photo = document.getElementById("ajouter_photo");
+        var imgDefaut = document.getElementById("image_par_defaut");
+        var btnAjouterPhoto = document.getElementById("ajouter_photo");
         output.src = reader.result;
         output.style.display = "block"; // Afficher l'image
-        img_defaut.style.display = "none";
-        btn_ajouter_photo.style.display = "none";
+        imgDefaut.style.display = "none";
+        btnAjouterPhoto.style.display = "none";
       };
       reader.readAsDataURL(event.target.files[0]);
     });
 
-const ajouter_titre = document.getElementById("ajouter_titre");
-ajouter_titre.addEventListener("input", (event) => {
+const ajouterTitre = document.getElementById("ajouter_titre");
+ajouterTitre.addEventListener("input", (event) => {
   if (
     
     document.getElementById("image_previsualiser").src !== "" &&
@@ -240,7 +239,7 @@ ajouter_titre.addEventListener("input", (event) => {
 
 /*
     document.addEventListener("DOMContentLoaded", function () {
-      //Si image_previsualiser ou ajouter_titre ou ajouter_categorie ne sont pas vides alros le bouton valider_btn doit avoir comme background green
+      //Si image_previsualiser ou ajouterTitre ou ajouter_categorie ne sont pas vides alros le bouton validerBtn doit avoir comme background green
       if (
         document.getElementById("image_previsualiser").src !== "" &&
         document.getElementById("ajouter_titre").value !== "" &&
@@ -249,8 +248,8 @@ ajouter_titre.addEventListener("input", (event) => {
         document.getElementById("valider_btn").style.backgroundColor = "green";
       }})
 */
-  valider_btn.addEventListener("click", async (event) => {
-    //Si image_previsualiser ou ajouter_titre ou ajouter_categorie est vidse alors le bouton valider_btn doit etre desactivé
+validerBtn.addEventListener("click", async (event) => {
+    //Si image_previsualiser ou ajouterTitre ou ajouter_categorie est vidse alors le bouton valider_btn doit etre desactivé
    if (
       document.getElementById("image_previsualiser").src === "" ||
       document.getElementById("ajouter_titre").value === "" ||
@@ -328,9 +327,9 @@ document.addEventListener("DOMContentLoaded", async function () {
   if (token) {
     const father = document.querySelector("#ajouter_categorie");
     //Creer la premiere option de la liste deroulante
-    const premiere_option_liste = document.createElement("option");
-    // premiere_option_liste.textContent = "Choisir une categorie";
-    father.appendChild(premiere_option_liste);
+    const premiereOptionListe = document.createElement("option");
+    // premiereOptionListe.textContent = "Choisir une categorie";
+    father.appendChild(premiereOptionListe);
 
     // Parcourir l'ensemble Set et créer une option pour chaque élément unique
     data.forEach((element) => {

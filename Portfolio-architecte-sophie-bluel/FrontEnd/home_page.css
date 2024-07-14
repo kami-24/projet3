@@ -1,10 +1,10 @@
 /** {
   border: 1px solid;
 }*/
-
+/*
 body {
   background-color: #f7f3eb;
-}
+}*/
 .containeur_haut_page {
   display: flex;
   justify-content: space-around;
@@ -41,6 +41,12 @@ justify-content: space-between;
   margin-top: 150px;
   color: rgb(31, 78, 31);
   text-align: center;
+
+    font-family: "Syne", sans-serif;
+    /*font-optical-sizing: auto;*/
+    font-weight: bold;
+   /* font-style: normal;*/
+  
 }
 
 .main_page {
@@ -85,7 +91,7 @@ justify-content: space-between;
   margin-bottom: 20px;
   padding: 10px;
   width: 300px;
-  box-shadow: 0px 0px 4px 1px rgba(255, 255, 255, 0.3);
+  box-shadow: 0px 0px 4px 1px rgba(110, 110, 110, 0.3);
   border: none;
 }
 .containeur_principal {
@@ -108,3 +114,9 @@ footer {
   right: 120px;
   bottom: 0;
 }
+.police_element{
+font-family: "Work Sans", sans-serif;
+/*font-optical-sizing: auto;
+font-weight: <weight>;*/
+/*font-style: normal;*/}
+

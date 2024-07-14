@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     });
   }
 });
-
+ 
 // Fonction qui va filtrer les images en fonction de la catégorie
 function filtrer_images(categorie, data) {
   //si la categorie du bouton est égale a Objets alors on affiche les images qui ont la categorie Objets
@@ -224,9 +224,47 @@ document.addEventListener("DOMContentLoaded", function () {
       reader.readAsDataURL(event.target.files[0]);
     });
 
-  valider_btn.addEventListener("click", async (event) => {
-    event.preventDefault(); // pour ne pas recharger la page
+const ajouter_titre = document.getElementById("ajouter_titre");
+ajouter_titre.addEventListener("input", (event) => {
+  if (
+    
+    document.getElementById("image_previsualiser").src !== "" &&
+    document.getElementById("ajouter_titre").value !== "" &&
+    document.getElementById("ajouter_categorie").value !== ""
+  ) {
+    console.log("mon test test")
+    document.getElementById("valider_btn").style.backgroundColor = "green";
+  }
 
+});
+
+/*
+    document.addEventListener("DOMContentLoaded", function () {
+      //Si image_previsualiser ou ajouter_titre ou ajouter_categorie ne sont pas vides alros le bouton valider_btn doit avoir comme background green
+      if (
+        document.getElementById("image_previsualiser").src !== "" &&
+        document.getElementById("ajouter_titre").value !== "" &&
+        document.getElementById("ajouter_categorie").value !== ""
+      ) {
+        document.getElementById("valider_btn").style.backgroundColor = "green";
+      }})
+*/
+  valider_btn.addEventListener("click", async (event) => {
+    //Si image_previsualiser ou ajouter_titre ou ajouter_categorie est vidse alors le bouton valider_btn doit etre desactivé
+   if (
+      document.getElementById("image_previsualiser").src === "" ||
+      document.getElementById("ajouter_titre").value === "" ||
+      document.getElementById("ajouter_categorie").value === ""
+    ) {
+      
+     
+     // document.getElementById("valider_btn").disabled = true;
+      return console.log("Veuillez remplir tous les champs");
+    }
+    else{
+
+    event.preventDefault(); // pour ne pas recharger la page
+  
     const photo = document.getElementById("telecharger_image_input").files[0];
 
     const titre = document.getElementById("ajouter_titre").value;
@@ -261,8 +299,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const modale2 = document.getElementById("modale2");
     const modale1 = document.getElementById("modale");
     modale2.style.display = "none";
-    modale1.style.display = "block";
-  });
+    modale1.style.display = "block";}
+  }
+);
 });
 
 //Redirection vers la modale 1
@@ -277,35 +316,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-//Le menu déroulant de la modale 2
-document.addEventListener("DOMContentLoaded", async function () {
-  const response = await fetch("http://localhost:5678/api/works");
-  const data = await response.json();
-  const token = localStorage.getItem("token");
-  if (token) {
-    return;
-  } else {
-    const tableau_categorie = data.map((element) => element.category.name);
-    const monSet = new Set(["Tous", ...tableau_categorie]); // Création d'un ensemble Set à partir du tableau
 
-    const father = document.querySelector("#containeur_bouton");
-    // Creer un container div pour les boutons
-    const buttonContainer = document.createElement("div");
-    buttonContainer.classList.add("button-container");
-
-    // Parcourir l'ensemble Set et créer un bouton pour chaque élément unique
-    monSet.forEach((categorie) => {
-      const button = document.createElement("button");
-      button.textContent = categorie;
-      // Ajouter un écouteur d'événements pour chaque bouton qui va permettre de filtrer les éléments
-
-      button.addEventListener("click", () => {
-        filtrer_images(categorie, data);
-      });
-      father.appendChild(button);
-    });
-  }
-});
 
 //Le menu deroulant des categorie dans la modale 2 est génére dynamiquement
 

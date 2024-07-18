@@ -1,4 +1,4 @@
-//La requête pour envoyer les valeurs des entrees de mon formulaire de la page home_page.html
+//La requête pour envoyer les valeurs des entrees de mon formulaire de la page login_page.html
 async function formulaire() {
   const response = await fetch("http://localhost:5678/api/users/login", {
     method: "POST",

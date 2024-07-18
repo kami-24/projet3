@@ -38,16 +38,27 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-//Quand on clique sur le bouton logout on est rediriger vers la page home_page.html
+//Quand on clique sur le bouton logout on est rediriger vers la page régulière
 document.addEventListener("DOMContentLoaded", function () {
   const token = localStorage.getItem("token");
-  var boutonModifier = document.getElementById("login_logout");
+  var boutonLogout = document.getElementById("login_logout");
   if (token) {
-    boutonModifier.addEventListener("click", () => {
+    boutonLogout.addEventListener("click", () => {
       // Supprime le token du localStorage
+     localStorage.removeItem("token");
 
-      localStorage.removeItem("token");
-      window.location.href = "home_page.html";
+    });
+  }
+});
+
+//Quand on clique sur le bouton login on est rediriger vers la page login_page.html
+document.addEventListener("DOMContentLoaded", function () {
+  const token = localStorage.getItem("token");
+  var boutonLogin = document.getElementById("login_logout");
+  if (!token) {
+    boutonLogin.addEventListener("click", () => {
+      event.preventDefault();
+      window.location.href = "login_page.html";
     });
   }
 });
@@ -230,6 +241,7 @@ document.addEventListener("DOMContentLoaded", function () {
       document.getElementById("ajouter_titre").value !== "" &&
       document.getElementById("ajouter_categorie").value !== ""
     ) {
+      document.querySelector('.valider_btn').disabled = false;
       validerBtn.style.backgroundColor = "#2f7d6d"; //Modifier la couleur du bouton valider
     } else {
       validerBtn.style.backgroundColor = "";
